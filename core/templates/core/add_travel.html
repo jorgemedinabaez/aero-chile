@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo Viaje</title>
+</head>
+<body>
+    <h1>Nuevo Viaje</h1>
+    <form action="/travel/new/register/" method="post" >
+        {% csrf_token %}
+        Código<br>
+        <input name="code">
+        <br><br>
+        Origen<br>
+        <input name="origin">
+        <br><br>
+        Destino<br>
+        <input name="destination">
+        <br><br>
+        Fecha<br>
+        <input name="flight_date">
+        <br><br>
+        Avión<br>
+        <input name="planes_id">
+        <br><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

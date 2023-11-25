@@ -22,11 +22,11 @@ class Plane(models.Model):
 STATE_CHOICES =[('Agendado','Agendado'),('Completado','Completado')] 
 
 CITY_CHOICES =[
-    ('Santiago-Chile','SAN-CHI'),
-    ('Lima-Perú','LIM-PER'),
-    ('Buenos Aires-Argentina','BAS-ARG'),
-    ('La Paz-Bolivia','LPZ-BOL'),
-    ('Quito-Ecuador','QUI-ECU'),
+    ('Santiago','SAN-CHI'),
+    ('Lima','LIM-PER'),
+    ('Buenos Aires','BAS-ARG'),
+    ('La Paz','LPZ-BOL'),
+    ('Quito','QUI-ECU'),
 ]
 
 class Travel(models.Model):

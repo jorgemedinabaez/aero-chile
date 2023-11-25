@@ -87,6 +87,10 @@ DATABASES = {
         "NAME": "aero_chile_db",
         "USER": "postgres",
         "PASSWORD": "abc.123",
+<<<<<<< HEAD
+=======
+        # "PASSWORD": "postgres",
+>>>>>>> main
         "HOST": "127.0.0.1",
         "PORT": "5432",
     }
