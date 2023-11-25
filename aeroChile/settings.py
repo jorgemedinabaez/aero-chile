@@ -86,7 +86,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "aero_chile_db",
         "USER": "postgres",
-        "PASSWORD": "postgres",
+        "PASSWORD": "abc.123",
         "HOST": "127.0.0.1",
         "PORT": "5432",
     }
