@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Nuevo Viaje</h1>
-    <form action="/travel/new/register/" method="post" >
+    <form action= {% url 'add_register_travel' %} method="post" >
         {% csrf_token %}
         Código<br>
         <input name="code">
