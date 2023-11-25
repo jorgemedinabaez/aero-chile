@@ -86,11 +86,8 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "aero_chile_db",
         "USER": "postgres",
-        "PASSWORD": "abc.123",
-<<<<<<< HEAD
-=======
-        # "PASSWORD": "postgres",
->>>>>>> main
+        # "PASSWORD": "abc.123",
+        "PASSWORD": "postgres",
         "HOST": "127.0.0.1",
         "PORT": "5432",
     }
