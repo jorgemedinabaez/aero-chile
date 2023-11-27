@@ -1,17 +1,21 @@
 {% extends 'core/base.html' %}
 
-
 {% block content %}
+{% load crispy_forms_tags %}
+
 <h1>Registro de usuario</h1>
 
-{{error}}
+    {{error}}
 
-<form action="/register/" method="POST">
-    {% csrf_token %}
-    {{form.as_p}}
-        <button>
-            Registrarme
-        </button>
-</form>
+<div class="row col-3">
+    <form action= {% url 'register' %} method="POST">
+        {% csrf_token %}
+        {% comment %} {{form.as_p}} {% endcomment %}
+        {{ form|crispy }}
+            <button type='submit'>
+                Registrarme
+            </button>
+    </form>
+</div>
 
 {% endblock content %}

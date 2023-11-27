@@ -1,14 +1,14 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nuevo Viaje</title>
-</head>
-<body>
-    <h1>Nuevo Viaje</h1>
-    <form action= {% url 'add_register_travel' %} method="post" >
+{% extends 'core/base.html' %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+
+<h1>Nuevo Viaje</h1>
+
+<div class="row col-3">
+    <form action= {% url 'add_travel_register' %} method="POST" >
         {% csrf_token %}
+        {{ form|crispy }}
         Código<br>
         <input name="code">
         <br><br>
@@ -26,5 +26,6 @@
         <br><br>
         <input type="submit" value="Submit">
     </form>
-</body>
-</html>
+</div>
+
+{% endblock %}

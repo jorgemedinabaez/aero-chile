@@ -77,7 +77,7 @@ def sign_out(request):
 def add_travel(request):
     return render(request,'core/add_travel.html')
 
-def add_register_travel(request):
+def add_travel_register(request):
     codigo = request.POST['code']
     origen = request.POST['origin']
     destino = request.POST['destination']
@@ -85,4 +85,4 @@ def add_register_travel(request):
     avion = request.POST['planes_id']
     flight = Travel(code=codigo, origin=origen, destination=destino, flight_date=fecha_vuelo, planes_id=avion)
     flight.save()
-    return redirect('')
+    return render(request, 'core/add_travel_register')

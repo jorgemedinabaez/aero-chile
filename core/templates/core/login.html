@@ -1,21 +1,22 @@
 {% extends 'core/base.html' %}
 
 {% block content %}
+{% load crispy_forms_tags %}
 
-<h2>Página de login</h2><br>
+<h2>Página de login</h2>
 
 {{ error }}
 
-<br><br>
-<form action="/login/" method='POST'>
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button>
-        Entrar
-    </button>
-
-</form>
-
+<div class="row col-3 mt-3">
+    <form action= {% url 'login' %} method='POST'>
+        {% csrf_token %}
+        {% comment %} {{ form.as_p }} {% endcomment %}
+        {{form|crispy}}
+        <button type='submit'>
+            Entrar
+        </button>
+    </form>
+</div>
 
 {% endblock content %}
 
