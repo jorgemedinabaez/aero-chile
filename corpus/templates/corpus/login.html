@@ -1,0 +1,39 @@
+{% extends 'corpus/base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+     <!-- Agrega el enlace al archivo CSS de Bootstrap -->
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+     <!-- O usa tu propio archivo CSS si tienes Bootstrap descargado localmente -->
+</head>
+<body>
+
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div>
+        <h2 class="text-center">Login</h2><br>
+        <div>
+            {% if error_message %}
+                <p>{{ error_message }}</p>
+            {% endif %}
+        </div>
+        <p>Por favor, ingrese sus credenciales</p><br>
+        <form method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <div class="d-grid gap-2 col-8 mx-auto">
+            <button type="submit" class="btn btn-success">Iniciar sesión</button>
+            </div>
+        </form>
+        <br>
+        <p class='text-center'><a href="{% url 'recover_pass' %}">¿Olvidaste tu contraseña?</a></p>
+        <p class='text-center'>o quizás</p>
+        <p class='text-center'><a href="{% url 'register' %}">¿No estás registrado?</a></p>
+    </div>
+</div>    
+</body>
+</html>
+{% endblock content %}

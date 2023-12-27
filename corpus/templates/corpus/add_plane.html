@@ -1,0 +1,45 @@
+{% extends 'corpus/base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html>
+<head>
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+     <style>
+        /* Estilos para el contenedor del formulario */
+        .form-container {
+            position: relative;
+            max-width: 700px; /* Cambia este valor según el ancho deseado */
+            margin: 0 auto; /* Centrar el formulario horizontalmente */
+            top: -120px; /* Ajusta este valor según sea necesario para alinear el formulario */
+        }
+        .custom-button {
+            margin-left:   27px;
+        }
+     </style>
+</head>
+<body>
+<!-- Botón para regresar al home -->
+<a href="{% url 'home' %}" class="btn btn-success custom-button">Regresar al Home</a>
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="form-container">
+        <h2 class="text-center">Ingreso de avión</h2>
+        <p>Por favor, ingrese los campos requeridos </p>
+        <form method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <div class="d-grid gap-2 col-5 mx-auto">
+                <button type="submit" class="btn btn-success">Enviar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% if form.errors %}
+    <div class="alert alert-danger">
+        {{ form.errors }}
+    </div>
+{% endif %}
+
+{% endblock %}

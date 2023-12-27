@@ -1,0 +1,30 @@
+{% extends 'corpus/base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card p-4">
+        <h2 class="text-center">Recuperar contraseña</h2>
+        <p>Ingrese su dirección de correo electrónico para restablecer su contraseña</p>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <input class="form-control" type="email" name="email" placeholder="Ingrese su correo electrónico" required>
+            </div><br>
+            <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-success">Enviar</button>
+            </div>
+        </form>
+        <br>
+        <p class='text-center'>¿Recordaste tu contraseña? <span class='text-center'><a href="{% url 'login' %}">Regresa al login</a></span></p>
+    </div>
+</div>
+</body>
+{% endblock %}

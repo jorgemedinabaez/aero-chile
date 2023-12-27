@@ -1,0 +1,39 @@
+{% extends 'corpus/base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html>
+<head>
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+     <style>
+        /* Estilos para la posición del formulario */
+        .form-anchor {
+            position: relative;
+            top: 0px; /* Ajusta este valor según sea necesario para alinear el formulario */
+        }
+        .custom-button {
+            margin-left:   27px;
+        }
+    </style>
+</head>
+<body>
+    <a href="{% url 'home' %}" class="btn btn-success custom-button">Regresar al Home</a>
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="col-md-5 mx-auto form-anchor">
+            <h2 class="text-center">Creación de Vuelo</h2>
+            <p>Por favor, ingrese los campos requeridos </p>
+            <form method="post">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <div class="d-grid gap-2 col-5 mx-auto">
+                    <button type="submit" class="btn btn-success">Enviar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br>
+</body>
+</html>
+
+{% endblock %}

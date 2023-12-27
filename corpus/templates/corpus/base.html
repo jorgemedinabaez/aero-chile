@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% load bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+  {% bootstrap_messages %}
+  {% load static %}
+    <link rel="icon" href="{% static 'corpus/images/logo-avion-1.ico' %}" type="image/x-icon">
+    <title>Aero Nova</title>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      {% load static %}
+      <img src="{% static 'corpus/images/logo avion 1.png' %}" alt="Logo" width="30" height="24">
+      <a class="navbar-brand" href= {% url 'aeronova' %}>AeroNova</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0"> 
+          <li class="nav-item">  
+          {% if user.is_authenticated %}
+            <a class="nav-link active" aria-current="page" href= {% url 'home' %}>Home</a>{% endif %}
+          </li>
+          <li class="nav-item dropdown">
+            {% if user.is_authenticated %}
+              <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Acciones
+              </a>
+              <ul class="dropdown-menu bg-dark">
+                <li><a class="dropdown-item bg-dark text-light" href= {% url 'profile' %}>Mi perfil</a></li>
+                <li><hr class="dropdown-divider text-light"></li>
+                <li><a class="dropdown-item bg-dark text-light" href= {% url 'add_plane' %}>Ingreso de avión</a></li>
+                <li><hr class="dropdown-divider text-light"></li>
+                <li><a class="dropdown-item bg-dark text-light" href= {% url 'add_travel' %}>Creación de vuelo</a></li>
+              </ul>
+            {% else %}
+              <span class="nav-link disabled" href="#" aria-disabled="true">
+                Acciones
+              </span>
+            {% endif %}
+          </li>
+        </ul>
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <span class="navbar-brand text-light" href="#">
+              {% if user.is_authenticated %}
+              Bienvenido/a {{user.username}}
+              {% else %}
+              Bienvenido/a
+              {% endif %}
+            </span>
+          </li>
+            <li class="nav-item">
+              <a class="nav-link text-light" href= {% url 'support' %}>Soporte</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light" href= {% url 'contact' %}>Contacto</a>
+            </li>
+          </li>
+          <li class="nav-item">
+          {% if user.is_authenticated %}
+            <a class="nav-link text-light" href= {% url 'logout' %} aria-disabled="true">Logout</a>{% endif %}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav><br><br>
+ 
+  {% block content %}{% endblock content %}
+
+  <div>
+    <footer class='text-center'>
+        <p>&copy; 2024 Servicios Operativos para Aerolíneas <img src="{% static 'corpus/images/logo avion 1.png' %}" alt="Logo" width="30" height="24"></p>
+    </footer>
+  </div>
+  
+</body>
+</html>

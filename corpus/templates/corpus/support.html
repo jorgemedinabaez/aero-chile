@@ -1,0 +1,57 @@
+{% extends 'corpus/base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+     <!-- Agrega el enlace al archivo CSS de Bootstrap -->
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+     <!-- O usa tu propio archivo CSS si tienes Bootstrap descargado localmente -->
+     <style>
+        /* Estilos para la posición del formulario */
+        .form-anchor {
+            position: relative;
+            top: 20px; /* Ajusta este valor según sea necesario para alinear el formulario */
+        }
+        .custom-button {
+            margin-right:   50px;
+        }
+    </style>
+</head>
+<body>
+    <a href="{% url 'home' %}" class="btn btn-success float-right custom-button">Regresar al Home</a><br><br>
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="col-md-8 mx-auto form-anchor">
+            <h1 class="text-center">Soporte</h1>
+            <br>
+            <h3>Instrucciones de Uso y Documentación</h3>
+        <p>Para utilizar nuestro sistema de modo más eficiente, te recomendamos revisar nuestra documentación <a href="/documentacion">aquí</a>.</p>
+        
+        <h3>Soporte Técnico</h3>
+        <p>Si tus dudas aún no han sido resueltas, comunícate
+            con nuestro asistente virtual a través de Whatsapp</p>
+            <div class="d-grid gap-2 col-5 mx-auto">
+                <button type="submit" class="btn btn-success">Atención virtual vía Whatsapp</button>
+            </div>
+        <br>
+        <h3>Actualizaciones y Mantenimiento</h3>
+        <p>Próxima actualización: 1 de febrero de 2024</p>
+        <h3>Preguntas Frecuentes</h3>
+        <br>
+        <p><strong>Pregunta 1:</strong> <a href="#">¿Cómo cambio mi contraseña?</a></p>
+        <p><strong>Pregunta 2:</strong> <a href="#">¿Qué hago si olvidé mi contraseña?</a></p>
+        <p><strong>Pregunta 3:</strong> <a href="#">¿Cómo puedo crear un vuelo? ¿Cómo puedo modificar un vuelo</a></p>
+        <p><strong>Pregunta 4:</strong> <a href="#">¿Cómo agrego pasajeros al vuelo? ¿Cómo puedo modificar su información personal?</a></p>
+        <p><strong>Pregunta 5:</strong> <a href="#">¿Cómo puedo integrar aviones al sistema?</a></p>        
+        <!-- Agrega más preguntas y respuestas aquí -->
+
+        <!-- Aquí podrías incluir más secciones como enlaces a recursos adicionales, comunidad, etc. -->
+        </div>
+    </div>
+    <br><br><br>
+</body>
+</html>
+
+{% endblock %}

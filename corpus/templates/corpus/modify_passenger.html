@@ -1,0 +1,28 @@
+{% extends "corpus/base.html" %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <title>Modificar pasajero</title>
+</head>
+<body>
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="card p-4">
+            <!-- Columna para el formulario de vuelos -->
+            <h2 class='text-center'>Modificar pasajero</h2><br>
+            <form method="post">
+                {% csrf_token %}
+                {{ form|crispy }}<br>
+                <div class="d-grid gap-2 col-8 mx-auto">
+                    <button type="submit" class="btn btn-success">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}
