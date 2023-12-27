@@ -1,0 +1,42 @@
+{% extends 'corpus/base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+     <!-- Agrega el enlace al archivo CSS de Bootstrap -->
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+     <!-- O usa tu propio archivo CSS si tienes Bootstrap descargado localmente -->
+     <style>
+        /* Ajustar el ancho del formulario */
+        .form-container {
+            max-width: 500px; /* Cambia este valor según el ancho deseado */
+            margin: 0 auto; /* Centrar el formulario horizontalmente */
+            top: -30px; /* Ajusta este valor según sea necesario para alinear el formulario */
+        }
+        .custom-button {
+            margin-left:   27px;
+        }
+     </style>
+</head>
+<body>
+<!-- Botón para regresar al home -->
+<a href="{% url 'home' %}" class="btn btn-success custom-button">Regresar al Home</a><br><br>
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="form-container">
+        <h2 class='text-center'>Mi Perfil</h2><br>
+        <p>A continuación, puede completar y/o modificar su información personal de usuario.</p>
+        <form method="post">
+            {% csrf_token %}
+            {{ register_form|crispy }}
+            {{ profile_form|crispy }}
+            <div class="d-grid gap-2 col-5 mx-auto">
+                <button type="submit" class="btn btn-success">Guardar cambios</button>
+            </div>
+        </form>
+    </div>
+</div>
+<br>
+{% endblock %}

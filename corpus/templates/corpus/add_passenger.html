@@ -1,0 +1,34 @@
+{% extends 'corpus/base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html>
+<head>
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+     <style>   
+        .custom-button {
+            margin-right:   50px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Botón para regresar al home -->
+    <a href="{% url 'home' %}" class="btn btn-success float-right custom-button">Regresar al Home</a><br><br>   
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="col-md-4 mx-auto">
+            <h2 class="text-center">Agregar pasajero</h2>
+            <p>Por favor, ingrese los campos requeridos </p>
+            <form method="post">
+                {% csrf_token %}
+                {{ passenger_form|crispy }}
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-success">Enviar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+
+{% endblock %}

@@ -14,7 +14,28 @@
 
 <body>
 
-  <nav>
+  {% comment %} <nav> {% endcomment %}
+  <!-- As a link -->
+  <nav class="navbar bg-secondary">
+    <div class="container-fluid">
+      <a class="navbar-brand text-light" href="#">{% if user.is_authenticated %}Hola {{user.username}}{% else %}Bienvenido{% endif %}</a>
+      <button type="button">
+        <a class="btn-light" href= {% url 'logout' %} style="text-decoration: none;">Logout</a>
+      </button>
+    </div>
+  </nav>
+
+  <!-- As a heading -->
+  <nav class="navbar bg-body-tertiary">
+    <div class="container-fluid">
+      <span class="navbar-brand mb-0 h1" href="">Viajes</span>
+      <button type="button">
+        <a class="btn-light" href= {% url 'add_travel' %} style="text-decoration: none;">Crear Viaje</a>
+      </button>
+    </div>
+  </nav>
+
+  {% comment %} <nav>
     <ul>
       <li>
         <a href="/">Home</a>
@@ -39,7 +60,7 @@
       {% endif %}
       
     </ul>
-  </nav>
+  </nav> {% endcomment %}
 
     {% block content %}
     {% endblock content %}

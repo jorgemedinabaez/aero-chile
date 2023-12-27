@@ -1,0 +1,106 @@
+{% extends "corpus/base.html" %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aero Nova</title>
+    <style>
+        /* Estilo para los enlaces */
+        a {
+            color: #007bff; /* Color del enlace (por ejemplo, azul) */
+            text-decoration: none; /* Eliminar el subrayado del enlace */
+        }
+    
+        /* Estilo para cuando el cursor esté encima del enlace */
+        a:hover {
+            text-decoration: underline; /* Agregar subrayado al pasar el cursor */
+        }
+    </style>
+</head>
+
+<body>
+    
+    {% if user.is_authenticated %}
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="table-responsive col-lg-8">
+                    <h2 class="text-center">Registro de viajes</h2><br>
+                    <table class="table table-bordered table-hover" style="text-align:center; background-color: #f2f2f2;">
+                        <tr>
+                            <th style="font-weight: bold; padding: 8px; border-bottom: 1px solid #ddd;">Código</th>
+                            <th style="font-weight: bold; padding: 8px; border-bottom: 1px solid #ddd;">Origen</th>
+                            <th style="font-weight: bold; padding: 8px; border-bottom: 1px solid #ddd;">Destino</th>
+                            <th style="font-weight: bold; padding: 8px; border-bottom: 1px solid #ddd;">Fecha</th>
+                            <th style="font-weight: bold; padding: 8px; border-bottom: 1px solid #ddd;">Estado de vuelo</th>
+                            <th style="font-weight: bold; padding: 8px; border-bottom: 1px solid #ddd;">Pasajeros</th>
+                        </tr>
+                    
+                        {% for travel in travels %}
+                        <tr>
+                            <td style="padding: 8px; border-bottom: 1px solid #ddd;"><a href="{% url 'travel_detail' travel_id=travel.id %}">{{ travel.code }}</td></a>
+                            <td style="padding: 8px; border-bottom: 1px solid #ddd;">{{ travel.origin }}</td>
+                            <td style="padding: 8px; border-bottom: 1px solid #ddd;">{{ travel.destination }}
+                            </td>
+                            <td style="padding: 8px; border-bottom: 1px solid #ddd;">{{ travel.flight_date }}</td>
+                            <td style="padding: 8px; border-bottom: 1px solid #ddd;">
+                                <form id="stateForm{{ travel.id }}" action="{% url 'travel_state' %}" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="travel_id" value="{{ travel.id }}">
+                                    <select name="new_state" onchange="this.form.submit()">
+                                        <option value="Agendado" {% if travel.state == 'Agendado' %} selected {% endif %}>Agendado</option>
+                                        <option value="Completado" {% if travel.state == 'Completado' %} selected {% endif %}>Completado</option>
+                                    </select>
+                                </form>
+                            </td>
+                            <td style="padding: 8px; border-bottom: 1px solid #ddd;">
+                                {% if travel.state == 'Agendado' %}
+                                        <!-- Tu formulario o botón para agregar pasajeros -->
+                                        <form id="addPassengerForm{{ travel.id }}" action="{% url 'add_passenger' %}" method="post">
+                                            {% csrf_token %}
+                                            {% comment %} <input type="hidden" name="travel_id" value="{{ travel.id }}"> {% endcomment %}
+                                            <button type="submit" class="btn btn-success">Agregar</button>
+                                        </form>
+                                {% elif travel.state == 'Completado' %}
+                                    <!-- Estado Completado: No permitir el ingreso de pasajeros -->
+                                        <p>El vuelo está completado.</p>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}   
+                    </table>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="container d-flex justify-content-center align-items-center vh-100">
+            <div>
+                <h2 class="text-center">Login</h2><br>
+                    <div>
+                        {% if error_message %}
+                            <p>{{ error_message }}</p>
+                        {% endif %}
+                    </div>
+                    <p>Por favor, ingrese sus credenciales</p><br>
+                <form method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    {{ login|crispy }}
+                    <div class="d-grid gap-2 col-8 mx-auto">
+                    <button type="submit" class="btn btn-success">Iniciar sesión</button>
+                    </div>
+                </form>
+                <br>
+                <p class='text-center'><a href="{% url 'recover_pass' %}">¿Olvidaste tu contraseña?</a></p>
+                <p class='text-center'>o quizás</p>
+                <p class='text-center'><a href="{% url 'register' %}">¿No estás registrado?</a></p>
+            </div>
+        </div>
+    {% endif %}
+<br>
+</body>
+</html>
+{% endblock content %}

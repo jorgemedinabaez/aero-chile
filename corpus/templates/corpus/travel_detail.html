@@ -1,0 +1,140 @@
+{% extends "corpus/base.html" %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <title>Editar detalles de vuelo</title>
+    <style>
+        /* Estilos personalizados para ajustar el margen */
+        .custom-margin-1 {
+            margin-left: -90px; /* Márgen izquierdo */
+            margin-right: 50px; /* Márgen derecho */
+        }
+
+        .custom-margin-2 {
+            margin-left:   12px; /* Márgen izquierdo */
+            margin-right: -90px; /* Márgen derecho */
+        }
+        
+        .custom-button {
+            margin-left:   27px;
+        }
+    </style>
+</head>
+<body>
+    <h1 class='text-center'>Editar detalles de vuelo</h1><br>
+        <!-- Botón para regresar al home -->
+        <a href="{% url 'home' %}" class="btn btn-success custom-button">Regresar al Home</a><br><br>
+    <div class="container mt-4">
+        <div class="row">
+            <!-- Columna para el formulario de vuelos -->
+            <div class="col-md-5">
+                <div class="card p-4 custom-margin-1">
+                    <h2 class='text-center'>Modificar vuelo</h2><br>
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form|crispy }}<br>
+                        <div class="d-grid gap-2 col-6 mx-auto">
+                            <button type="submit" class="btn btn-success">Guardar Cambios</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Columna para el listado de pasajeros -->
+            <div class="col-md-7">
+                <div class="card p-4 custom-margin-2">
+                    <h2 class='text-center'>Listado de pasajeros</h2><br>
+                    <table class="table table-bordered table-hover" style="text-align:center; background-color: #f2f2f2;">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Fecha de nacimiento</th>
+                                <th>RUT</th>
+                                <th>Esquema de vacunación</th>
+                                <th>Acción 1</th>
+                                <th>Acción 2</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for passenger in passengers %}
+                                <tr>
+                                    <td>{{ passenger.name }}</td>
+                                    <td>{{ passenger.birth }}</td>
+                                    <td>{{ passenger.rut }}</td>
+                                    <td>{{ passenger.vaccine }}</td>
+                                    <td>
+                                        <a href="{% url 'modify_passenger' passenger.id %}" class="btn btn-success">Modificar</a>
+                                    </td>
+                                    <td>
+                                        <form method="post" action="{% url 'eliminate_passenger' passenger.id %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-danger" onclick="return confirm('¿Está seguro que desea eliminar al pasajero?')">Eliminar</button>
+                                        </form>
+                                        
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+{% endblock content %}
+
+{% comment %} {% extends "corpus/base.html" %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <title>Editar detalles de vuelo</title>
+    <style>
+        /* Estilos personalizados para ajustar el margen */
+        .custom-margin {
+            margin-left: -900px; /* Puedes ajustar este valor según tu preferencia */
+            margin-right: 20px; /* Puedes ajustar este valor según tu preferencia */
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="card p-4 custom-margin">
+            <h2>Editar detalles de vuelo</h2><br>
+            <form method="post">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit" class="btn btn-success">Guardar Cambios</button>
+            </form>
+        </div>
+    </div>
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="card p-4 custom-margin">
+    <!-- Mostrar lista de pasajeros -->
+            <h2>Listado de pasajeros</h2>
+            <ul>
+                {% for passenger in passengers %}
+                    <li>{{ passenger.name }} - {{ passenger.birth }} - {{ passenger.rut }} - {{ passenger.vaccine }}</li>
+                    <!-- Mostrar otros campos del pasajero si es necesario -->
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
+
+{% endblock content %} {% endcomment %}

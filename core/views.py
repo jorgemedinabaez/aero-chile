@@ -3,9 +3,11 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
-from .models import Travel
+from .models import Travel, Passenger, Plane
+
 
 # Create your views here.
+
 
 def home(request):
     travels = Travel.objects.all()
@@ -72,7 +74,7 @@ def sign_in(request):
 
 def sign_out(request):
     logout(request)
-    return redirect('home')
+    return redirect('login')
 
 def add_travel(request):
     return render(request,'core/add_travel.html')
@@ -83,6 +85,19 @@ def add_travel_register(request):
     destino = request.POST['destination']
     fecha_vuelo = request.POST['flight_date']
     avion = request.POST['planes_id']
-    flight = Travel(code=codigo, origin=origen, destination=destino, flight_date=fecha_vuelo, planes_id=avion)
+    plane = Plane.objects.get(model=avion)
+    flight = Travel(code=codigo, origin=origen, destination=destino, flight_date=fecha_vuelo, planes_id=plane)
     flight.save()
     return render(request, 'core/add_travel_register')
+
+def add_passenger(request):
+    return render(request,'core/add_passenger.html')
+
+def add_passenger_register(request):
+    nombre = request.POST['name']
+    nacimiento = request.POST['birth']
+    vacuna = request.POST['vaccine']
+    rut = request.POST['rut']
+    passenger = Passenger(name=nombre, birth=nacimiento, vaccine=vacuna, rut=rut)
+    passenger.save()
+    return render(request, 'core/add_passenger_register')

@@ -1,0 +1,36 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+
+<h1>Agregar Pasajero</h1>
+
+<div class="row col-3">
+    <form action= {% url 'add_passenger_register' %} method="POST" >
+        {% csrf_token %}
+        {{ form|crispy }}
+        
+        <label for="name">Nombre</label><br>
+        <input type="text" name="name" id="" style="width: 145px;" placeholder="Nombre"><br><br>
+
+        <label for="birth">Nacimiento</label><br>
+        <input type="text" name="birth" id="" style="width: 145px;" placeholder="Nacimiento"><br><br>
+      
+        <label for="vaccine" placeholder="Vacuna"></label><br>
+        <select name="vaccine" id="" style="width: 145px;">
+            <option value="">Vacuna</option>
+            <option value="Sinovac">Sinovac</option>
+            <option value="Pfizer">Pfizer</option>
+            <option value="Cancino">Cancino</option>
+            <option value="Astrazéneca">Astrazéneca</option>
+            <option value="Otra">Otra</option>
+        </select><br><br>
+
+        <label for="rut">Rut</label><br>
+        <input type="text" name="rut" id="" style="width: 145px;" placeholder="Rut"><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
+{% endblock %}

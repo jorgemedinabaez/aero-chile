@@ -1,0 +1,28 @@
+{% comment %} {% extends 'corpus/base.html' %} {% endcomment %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card p-4">
+    <title>Restablecer Contraseña</title>
+    <!-- Estilos o enlaces a recursos -->
+</head>
+<body>
+    <h2>Restablecer Contraseña</h2>
+    <p>Hola {{ user.username }},</p>
+    <p>Hemos recibido una solicitud para restablecer tu contraseña. Para proceder con el restablecimiento, haz clic en el siguiente enlace:</p>
+    <p><a href="{{ reset_link }}">Restablecer Contraseña</a></p>
+    <p>Si no solicitaste este cambio, puedes ignorar este mensaje.</p>
+    <p>Gracias,</p>
+    <p>Equipo de soporte</p>
+    </div>
+</div>
+</body>
+</html>
+{% endblock %}
