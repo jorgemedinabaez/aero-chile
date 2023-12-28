@@ -10,8 +10,10 @@ Django==4.0.5
 django-bootstrap-v5==1.0.11
 django-crispy-forms==2.0
 filelock==3.12.2
+gunicorn==21.2.0
 idna==3.4
 multipledispatch==0.6.0
+packaging==23.2
 platformdirs==3.8.0
 psycopg2==2.9.7
 psycopg2-binary==2.9.9
