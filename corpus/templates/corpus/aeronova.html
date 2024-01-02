@@ -38,6 +38,10 @@
         {% comment %} .without-border {
             border: none; /* Elimina todos los bordes */
           } {% endcomment %}
+          
+        .custom-button {
+          margin-right:   50px;
+        }
     </style>
 </head>
 
@@ -47,7 +51,7 @@
             <h1>Bienvenidos a AeroNova</h1>
             <h2>Tu facilitador de gestión aeronáutica</h2>
             <div class='button-container'>
-              <a href="{% url 'register' %}" class="btn btn-success float-right custom-button">Registrarme</a>
+              <a href="{% url 'register' %}" class="btn btn-success float-right custom-button">Registrarme</a><br><br>
               <a href="{% url 'login' %}" class="btn btn-success float-right custom-button">Login</a>
             </div>
         </div>
