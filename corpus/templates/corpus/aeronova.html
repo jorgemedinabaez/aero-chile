@@ -24,7 +24,7 @@
         /* Estilos para el texto superpuesto */
         .text-over {
             position: absolute;
-            top: 20%; /* Posición vertical del texto */
+            top: 16%; /* Posición vertical del texto */
             left: 22%; /* Posición horizontal del texto */
             transform: translate(-50%, -50%); /* Centra el texto */
             color: white; /* Color del texto */
@@ -38,9 +38,9 @@
         {% comment %} .without-border {
             border: none; /* Elimina todos los bordes */
           } {% endcomment %}
-
+          
         .custom-button {
-          margin-right:   100px;
+          margin-right:   250px;
         }
     </style>
 </head>
@@ -50,7 +50,7 @@
         <div class="text-over">
             <h1>Bienvenidos a AeroNova</h1>
             <h2>Tu facilitador de gestión aeronáutica</h2>
-            <div class='button-container'>
+            <div class='button-container custom-button'>
               <a href="{% url 'register' %}" class="btn btn-success float-right custom-button">Registrarme</a><br><br>
               <a href="{% url 'login' %}" class="btn btn-success float-right custom-button">Login</a>
             </div>
